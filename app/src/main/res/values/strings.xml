@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">TriviaQuestion</string>
+    <string name="app_name">Trivia</string>
+    <string name="category_name">Categories</string>
+    <string name="welcome">Welcome</string>
+    <string name="play_message">Let\'s Play!</string>
+    <string name="author">Made By: Jennifer Huynh</string>
+    <string-array name="categories">
+        <item>Geography</item>
+    </string-array>
 </resources>
