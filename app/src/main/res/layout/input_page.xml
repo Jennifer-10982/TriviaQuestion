@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:fontFamily="casual"
-        android:text="Game Over"
+        android:text="@string/game_over"
         android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,4 +6,5 @@
     <string name="play_message">Jouer!</string>
     <string name="author">Par: Jennifer Huynh</string>
     <string name="submit">SOUMETTRE</string>
+    <string name="game_over">Jeu Terminé</string>
 </resources>

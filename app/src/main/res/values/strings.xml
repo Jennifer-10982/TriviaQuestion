@@ -5,6 +5,7 @@
     <string name="play_message">Let\'s Play!</string>
     <string name="author">Made By: Jennifer Huynh</string>
     <string name="submit">SUBMIT</string>
+    <string name="game_over">Game Over</string>
     <string-array name="categories">
         <item>Geography</item>
     </string-array>
