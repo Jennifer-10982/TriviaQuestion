@@ -34,8 +34,8 @@
 
     <EditText
         android:id="@+id/editTextText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:gravity="center"
@@ -47,4 +47,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/display_points"
         app:layout_constraintVertical_bias="0.188" />
+
+    <Button
+        android:id="@+id/input_submit_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
