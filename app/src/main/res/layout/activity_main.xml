@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.136" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/playBtn"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:textStyle="bold"

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,13 +27,18 @@ public class Questionnaire_Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire_page);
 
-        model = new ViewModelProvider(this).get(QuestionPageViewModel.class);
         binding= ActivityQuestionnairePageBinding.inflate(getLayoutInflater());
-        variableBinding = ListItemBinding.inflate(getLayoutInflater());
-        setContentView(variableBinding.getRoot());
         setContentView(binding.getRoot());
 
-        variableBinding.points.setText(model.display_points);
+        variableBinding = ListItemBinding.inflate(getLayoutInflater());
+        setContentView(variableBinding.getRoot());
+
+        Intent fromPrevious = getIntent();
+        String choice = fromPrevious.getStringExtra("choice");
+
+        model = new ViewModelProvider(this).get(QuestionPageViewModel.class);
+
+        variableBinding.points.setText(String.valueOf(model.display_points));
 
         /**Checks whether the answer is correct. If it is, then the points increase. If not, then points decrease.
          * A message is display to notify whether the answer is correct or not.*/

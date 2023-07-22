@@ -8,5 +8,10 @@
     <string name="game_over">Game Over</string>
     <string-array name="categories">
         <item>Geography</item>
+        <item>Mythology</item>
+        <item>History</item>
+        <item>Politics</item>
+        <item>Art</item>
     </string-array>
+
 </resources>
