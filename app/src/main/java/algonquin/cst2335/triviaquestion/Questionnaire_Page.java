@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,8 +16,18 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 import algonquin.cst2335.triviaquestion.databinding.ActivityMainBinding;
 import algonquin.cst2335.triviaquestion.databinding.ActivityQuestionnairePageBinding;
@@ -33,6 +45,8 @@ public class Questionnaire_Page extends AppCompatActivity {
     private ActivityQuestionnairePageBinding binding;
 
     int number;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +77,49 @@ public class Questionnaire_Page extends AppCompatActivity {
 
         /*Using JsonObjectRequest to retrieve JSON data from stringURL using Volley*/
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringURL, null,
-                (response) -> {},
+                (response) -> {
+                    try{
+                        /*Using to retrieve the results from the database*/
+                       JSONArray resultsArray = response.getJSONArray("results");
+
+                       /*Use to retrieve a question object from the database*/
+                       JSONObject questionObject = resultsArray.getJSONObject(0);
+
+                       String question = questionObject.getString("question");
+                       String correct_answer = questionObject.getString("correct_answer");
+                       JSONArray incorrectAnsArray = questionObject.getJSONArray("incorrect_answers");
+
+                       /*Converting the JsonArray incorrectAnsArray into a List
+                       * Reference: https://www.javatpoint.com/how-to-convert-json-array-to-arraylist-in-java
+                       * */
+                        List<String> incorrectAnswers = new ArrayList<>();
+                        if(incorrectAnsArray!=null){
+                            for (int i = 0; i < incorrectAnsArray.length(); i++){
+                                incorrectAnswers.add(incorrectAnsArray.getString(i));
+                            }
+                        }
+
+                        /*Creating a list of all possible answers including incorrect and correct answers
+                        * Reference: https://www.baeldung.com/java-copy-list-to-another
+                        * */
+                        List<String> answers = new ArrayList<>(incorrectAnswers);
+                            answers.add(correct_answer);
+
+                        /*Shuffling the list called answers*/
+                        Collections.shuffle(answers);
+
+                        runOnUiThread(()->{
+                            /*Setting the objects from JSON to the buttons*/
+                            variableBinding.quiz.setText(question);
+                            /*Setting the text per option with the values in the array list that have been randomized*/
+                            variableBinding.option1.setText(answers.get(0));
+                            variableBinding.option2.setText(answers.get(1));
+                            variableBinding.option3.setText(answers.get(2));
+                            variableBinding.option4.setText(answers.get(3));
+                        });
+
+                    }catch(JSONException e){e.printStackTrace();}
+                },
                 (error )-> {});
         /*Adding HTTP request called request to the Volley request queue*/
         queue.add(request);
@@ -71,7 +127,6 @@ public class Questionnaire_Page extends AppCompatActivity {
         /*---------------End of Loading Data into Page---------------------------------*/
 
         model = new ViewModelProvider(this).get(QuestionPageViewModel.class);
-
         variableBinding.points.setText(String.valueOf(model.display_points));
 
 
@@ -107,12 +162,5 @@ public class Questionnaire_Page extends AppCompatActivity {
         }else
             return number = 25;
         }
-
-
-
-
-
-
-
 
     };
