@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/menu"
+    >
 
     <TextView
         android:id="@+id/quiz_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Quiz Whiz Jest"
+        android:text="GIVE UP"
         android:fontFamily="casual"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +30,8 @@
         android:text="@string/welcome"
         android:fontFamily="casual"
         android:textStyle="bold"
-        android:textSize="35dp"
+        android:textSize="40dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -52,16 +56,18 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="250dp"
-        android:layout_height="48dp"
+        android:layout_width="220dp"
+        android:layout_height="46dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="338dp"
         android:spinnerMode="dropdown"
-        android:text="@string/category_name"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome" />
+        app:layout_constraintTop_toBottomOf="@+id/welcome"
+        app:layout_constraintVertical_bias="0.454" />
 
     <TextView
         android:id="@+id/author"
