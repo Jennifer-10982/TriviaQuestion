@@ -43,22 +43,12 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
 
     private QuestionPageViewModel model;
     private ListItemBinding variableBinding;
-
     protected RequestQueue queue = null;
-
-//    private ActivityQuestionnairePageBinding binding;
-
     int number;
     int i = 0;
 
-    String stringURL;
-    String question;
-    String correct_answer;
-
-    TextView option1;
-    TextView option2;
-    TextView option3;
-    TextView option4;
+    String stringURL, question, correct_answer;
+    TextView option1, option2, option3, option4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +56,13 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
 
         /*Creating a Volley Object that will connect to the server*/
         queue = Volley.newRequestQueue(this);
-        setContentView(R.layout.activity_questionnaire_page);
+//        setContentView(R.layout.activity_questionnaire_page);
 
         variableBinding = ListItemBinding.inflate(getLayoutInflater());
         setContentView(variableBinding.getRoot());
 
         number = convertCategoryToNumber();
-//        String stringURL ="";
-        /*---------------Start of loading Data into Page----------------------------*/
+
             try {
                 stringURL = new StringBuilder()
                         .append("https://opentdb.com/api.php?amount=10&category=")
@@ -83,11 +72,10 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
             } catch(UnsupportedEncodingException e){e.printStackTrace();}
 
             JsonObjectRequest request;
-            int prev_Value=-1;
+
             /*Retrieving the values until*/
         request = loadPage(stringURL);
         queue.add(request);
-        /*---------------End of Loading Data into Page---------------------------------*/
 
         option1 = variableBinding.option1;
         option2 = variableBinding.option2;
@@ -128,8 +116,13 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
 
         /*Checks whether the user's choice was right or wrong*/
     public void checker(){
-      if(i>=1)
-          return;
+       if(i>=0){
+           variableBinding.submit.setOnClickListener(clk ->{
+               Intent nextPage = new Intent(Questionnaire_Page.this, GameOverPage.class);
+               nextPage.putExtra("counter", counter);
+               startActivity(nextPage);
+           });
+       }
         if (answer.equals(correct_answer)){
             counter = counter + 30;
             i++;
@@ -194,8 +187,6 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
                 variableBinding.option4.setTextColor(Color.parseColor("#FFC6CF6E"));
                 break;
         }
-
-
     }
 
     public JsonObjectRequest loadPage(String stringURL){

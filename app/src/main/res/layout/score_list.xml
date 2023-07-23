@@ -6,33 +6,46 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/score_1"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="90dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:gravity="center"
-        android:text="Player 1"
-        android:textSize="20dp"
+        android:id="@+id/leaders_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="casual"
+        android:text="Top 10 Scorer"
+        android:textSize="50dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/score_1"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center"
+        android:text="Player 1"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaders_title" />
+
+    <TextView
         android:id="@+id/score_2"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
         android:text="Player 2"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/score_1"
-        app:layout_constraintTop_toBottomOf="@+id/score_1" />
+        app:layout_constraintTop_toBottomOf="@+id/score_1"
+        tools:layout_editor_absoluteX="145dp" />
 
     <TextView
         android:id="@+id/score_3"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-medium"
@@ -46,7 +59,7 @@
 
     <TextView
         android:id="@+id/score_4"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-medium"
@@ -58,7 +71,7 @@
 
     <TextView
         android:id="@+id/score_5"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-medium"
@@ -70,7 +83,7 @@
 
     <TextView
         android:id="@+id/score_6"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-medium"
@@ -82,7 +95,7 @@
 
     <TextView
         android:id="@+id/score_7"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-medium"
@@ -94,7 +107,7 @@
 
     <TextView
         android:id="@+id/score_8"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-medium"
@@ -106,7 +119,7 @@
 
     <TextView
         android:id="@+id/score_9"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-medium"
@@ -118,7 +131,7 @@
 
     <TextView
         android:id="@+id/score_10"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-medium"
@@ -127,4 +140,152 @@
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/score_9"
         app:layout_constraintTop_toBottomOf="@+id/score_9" />
+
+    <TextView
+        android:id="@+id/point_1"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:text="Total Points_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toEndOf="@+id/score_1"
+        app:layout_constraintTop_toTopOf="@+id/score_1" />
+
+    <TextView
+        android:id="@+id/point_2"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:text="Total Points_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="143dp" />
+
+    <TextView
+        android:id="@+id/point_3"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:text="Total Points_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <TextView
+        android:id="@+id/point_4"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:text="Total Points_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="255dp" />
+
+
+    <TextView
+        android:id="@+id/point_5"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:text="Total Points_5"
+        tools:layout_editor_absoluteX="303dp"
+        tools:layout_editor_absoluteY="310dp" />
+
+
+    <TextView
+        android:id="@+id/point_6"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:text="Total Points_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <TextView
+        android:id="@+id/pos_1"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:text="1."
+        app:layout_constraintEnd_toStartOf="@+id/score_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaders_title" />
+
+    <TextView
+        android:id="@+id/pos_2"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:text="2."
+        app:layout_constraintEnd_toStartOf="@+id/score_2"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="146dp" />
+
+    <TextView
+        android:id="@+id/pos_3"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:text="3."
+        app:layout_constraintEnd_toStartOf="@+id/score_3"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <TextView
+        android:id="@+id/pos_4"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:text="4."
+        app:layout_constraintEnd_toStartOf="@+id/score_4"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="255dp" />
+
+    <TextView
+        android:id="@+id/pos_5"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:text="5."
+        app:layout_constraintEnd_toStartOf="@+id/score_5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="310dp" />
+
+    <TextView
+        android:id="@+id/pos_6"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:text="6."
+        app:layout_constraintEnd_toStartOf="@+id/score_6"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="365dp" />
+
+    <TextView
+        android:id="@+id/pos_7"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:text="7."
+        app:layout_constraintEnd_toStartOf="@+id/score_7"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="420dp" />
+
+    <TextView
+        android:id="@+id/pos_8"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:text="8."
+        app:layout_constraintEnd_toStartOf="@+id/score_8"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="475dp" />
+
+    <TextView
+        android:id="@+id/pos_9"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:text="9."
+        app:layout_constraintEnd_toStartOf="@+id/score_9"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="530dp" />
+
+    <TextView
+        android:id="@+id/pos_10"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:text="10."
+        app:layout_constraintEnd_toStartOf="@+id/score_10"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="584dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
