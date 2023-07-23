@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -47,8 +49,9 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
 //    private ActivityQuestionnairePageBinding binding;
 
     int number;
-    int i;
+    int i = 0;
 
+    String stringURL;
     String question;
     String correct_answer;
 
@@ -69,7 +72,7 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
         setContentView(variableBinding.getRoot());
 
         number = convertCategoryToNumber();
-        String stringURL ="";
+//        String stringURL ="";
         /*---------------Start of loading Data into Page----------------------------*/
             try {
                 stringURL = new StringBuilder()
@@ -79,56 +82,11 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
                         .append("&appid=7e943c97096a9784391a981c4d878b22").toString();
             } catch(UnsupportedEncodingException e){e.printStackTrace();}
 
-//         for (i = 0; i <= 10; i++){
-            /*Using JsonObjectRequest to retrieve JSON data from stringURL using Volley*/
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, stringURL, null,
-                    (response) -> {
-                        try{
-                            /*Using to retrieve the results from the database*/
-                            JSONArray resultsArray = response.getJSONArray("results");
-
-                            /*Use to retrieve a question object from the database*/
-                            JSONObject questionObject = resultsArray.getJSONObject(0);
-
-                            question = questionObject.getString("question");
-                            correct_answer = questionObject.getString("correct_answer");
-                            JSONArray incorrectAnsArray = questionObject.getJSONArray("incorrect_answers");
-
-                            /*Converting the JsonArray incorrectAnsArray into a List
-                             * Reference: https://www.javatpoint.com/how-to-convert-json-array-to-arraylist-in-java
-                             * */
-                            List<String> incorrectAnswers = new ArrayList<>();
-                            if(incorrectAnsArray!=null){
-                                for (int i = 0; i < incorrectAnsArray.length(); i++){
-                                    incorrectAnswers.add(incorrectAnsArray.getString(i));
-                                }
-                            }
-
-                            /*Creating a list of all possible answers including incorrect and correct answers
-                             * Reference: https://www.baeldung.com/java-copy-list-to-another
-                             * */
-                            List<String> answers = new ArrayList<>(incorrectAnswers);
-                            answers.add(correct_answer);
-
-                            /*Shuffling the list called answers*/
-                            Collections.shuffle(answers);
-
-                            runOnUiThread(()->{
-                                /*Setting the objects from JSON to the buttons*/
-                                variableBinding.quiz.setText(question);
-                                /*Setting the text per option with the values in the array list that have been randomized*/
-                                variableBinding.option1.setText(answers.get(0));
-                                variableBinding.option2.setText(answers.get(1));
-                                variableBinding.option3.setText(answers.get(2));
-                                variableBinding.option4.setText(answers.get(3));
-                            });
-
-                        }catch(JSONException e){e.printStackTrace();}
-                    },
-                    (error )-> {});
-            /*Adding HTTP request called request to the Volley request queue*/
-            queue.add(request);
-       // }
+            JsonObjectRequest request;
+            int prev_Value=-1;
+            /*Retrieving the values until*/
+        request = loadPage(stringURL);
+        queue.add(request);
         /*---------------End of Loading Data into Page---------------------------------*/
 
         option1 = variableBinding.option1;
@@ -148,7 +106,6 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
          * A message is display to notify whether the answer is correct or not.*/
         variableBinding.submit.setOnClickListener(clk ->{
             checker();
-//            i++;
         });
     }
 
@@ -171,32 +128,122 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
 
         /*Checks whether the user's choice was right or wrong*/
     public void checker(){
+      if(i>=1)
+          return;
         if (answer.equals(correct_answer)){
             counter = counter + 30;
+            i++;
+           JsonObjectRequest request = loadPage(stringURL);
+            queue.add(request);
             /*Converting the integer into a String*/
             variableBinding.points.setText(Integer.toString(counter));
             Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
         }else{
+            JsonObjectRequest request = loadPage(stringURL);
+            queue.add(request);
             counter = counter - 10;
             variableBinding.points.setText(Integer.toString(counter));
             Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
         }
     };
 
-    /*Method use to store the selected choice*/
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.option_1){
             answer = variableBinding.option1.getText().toString();
-            variableBinding.option1.setBackgroundColor(Color.parseColor("#86cc55"));
+            changeColor(1);
         } else if (v.getId() == R.id.option_2) {
             answer = variableBinding.option2.getText().toString();
-            variableBinding.option1.setBackgroundColor(Color.parseColor("#86cc55"));
+            changeColor(2);
         } else if (v.getId() == R.id.option_3) {
             answer = variableBinding.option3.getText().toString();
-            variableBinding.option1.setBackgroundColor(Color.parseColor("#86cc55"));
-        } else
+            changeColor(3);
+        } else {
             answer = variableBinding.option4.getText().toString();
-        variableBinding.option1.setBackgroundColor(Color.parseColor("#86cc55"));
+            changeColor(4);
+        }
     }
+
+    public void changeColor(int option){
+        switch(option){
+            case 1:
+                variableBinding.option1.setTextColor(Color.parseColor("#FFC6CF6E"));
+                variableBinding.option2.setTextColor(Color.parseColor("#FFFFFFFF"));
+                variableBinding.option3.setTextColor(Color.parseColor("#FFFFFFFF"));
+                variableBinding.option4.setTextColor(Color.parseColor("#FFFFFFFF"));
+                break;
+
+            case 2:
+                variableBinding.option1.setTextColor(Color.parseColor("#FFFFFFFF"));
+                variableBinding.option2.setTextColor(Color.parseColor("#FFC6CF6E"));
+                variableBinding.option3.setTextColor(Color.parseColor("#FFFFFFFF"));
+                variableBinding.option4.setTextColor(Color.parseColor("#FFFFFFFF"));
+                break;
+
+            case 3:
+                variableBinding.option1.setTextColor(Color.parseColor("#FFFFFFFF"));
+                variableBinding.option2.setTextColor(Color.parseColor("#FFFFFFFF"));
+                variableBinding.option3.setTextColor(Color.parseColor("#FFC6CF6E"));
+                variableBinding.option4.setTextColor(Color.parseColor("#FFFFFFFF"));
+                break;
+
+            case 4:
+                variableBinding.option1.setTextColor(Color.parseColor("#FFFFFFFF"));
+                variableBinding.option2.setTextColor(Color.parseColor("#FFFFFFFF"));
+                variableBinding.option3.setTextColor(Color.parseColor("#FFFFFFFF"));
+                variableBinding.option4.setTextColor(Color.parseColor("#FFC6CF6E"));
+                break;
+        }
+
+
+    }
+
+    public JsonObjectRequest loadPage(String stringURL){
+        return new JsonObjectRequest(Request.Method.GET, stringURL, null,
+                (response) -> {
+                    try{
+                        JSONArray result = new JSONArray();
+                        /*Using to retrieve the results from the database*/
+                        JSONArray resultsArray = response.getJSONArray("results");
+
+                        /*Use to retrieve a question object from the database*/
+                        JSONObject questionObject = resultsArray.getJSONObject(0);
+
+                        question = questionObject.getString("question");
+                        correct_answer = questionObject.getString("correct_answer");
+                        JSONArray incorrectAnsArray = questionObject.getJSONArray("incorrect_answers");
+
+                        /*Converting the JsonArray incorrectAnsArray into a List
+                         * Reference: https://www.javatpoint.com/how-to-convert-json-array-to-arraylist-in-java
+                         * */
+                        List<String> incorrectAnswers = new ArrayList<>();
+                        if(incorrectAnsArray!=null){
+                            for (int i = 0; i < incorrectAnsArray.length(); i++){
+                                incorrectAnswers.add(incorrectAnsArray.getString(i));
+                            }
+                        }
+
+                        /*Creating a list of all possible answers including incorrect and correct answers
+                         * Reference: https://www.baeldung.com/java-copy-list-to-another
+                         * */
+                        List<String> answers = new ArrayList<>(incorrectAnswers);
+                        answers.add(correct_answer);
+
+                        /*Shuffling the list called answers*/
+                        Collections.shuffle(answers);
+
+                        runOnUiThread(()->{
+                            /*Setting the objects from JSON to the buttons*/
+                            variableBinding.quiz.setText(question);
+                            /*Setting the text per option with the values in the array list that have been randomized*/
+                            variableBinding.option1.setText(answers.get(0));
+                            variableBinding.option2.setText(answers.get(1));
+                            variableBinding.option3.setText(answers.get(2));
+                            variableBinding.option4.setText(answers.get(3));
+                        });
+
+                    }catch(JSONException e){e.printStackTrace();}
+                },
+                (error )-> {});
+    };
 };
