@@ -3,9 +3,9 @@ package algonquin.cst2335.triviaquestion;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +26,7 @@ public class LeadershipBoardPage extends AppCompatActivity {
             /*Function creates ViewHolder Object. Represents a single row in the list*/
             @Override
             public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return null;
+                return new MyRowHolder(variableBinding.getRoot());
             }
 
             /*Funtion used to initialize a ViewHolder to go at the row specified at the position parameter*/
@@ -45,8 +45,15 @@ public class LeadershipBoardPage extends AppCompatActivity {
 
     /*Class represents an object for representing everything that goes on a row in a list*/
     class MyRowHolder extends RecyclerView.ViewHolder{
+        TextView position;
+        TextView score;
+        TextView highscore;
         public MyRowHolder(@NonNull View itemView){
             super(itemView);
+            position = itemView.findViewById(R.id.place);
+            score = itemView.findViewById(R.id.score);
+            highscore = itemView.findViewById(R.id.highscore);
+
         }
     }
 
