@@ -27,21 +27,20 @@ public class GameOverPage extends AppCompatActivity {
     private QuestionPageViewModel model;
     private InputPageBinding variableBinding;
 
-    private LeadershipDetailsLayoutBinding binding;
     private int counter;
 
     private String player;
 
-    PlayerInformationDAO pDAO;
+//    PlayerInformationDAO pDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         /*Use for opening the database*/
-        InformationDatabase db = Room.databaseBuilder(getApplicationContext(),
-                InformationDatabase.class,"database-name").build();
-        pDAO= db.cmDAO();
+//        InformationDatabase db = Room.databaseBuilder(getApplicationContext(),
+//                InformationDatabase.class,"database-name").build();
+//        pDAO= db.cmDAO();
 
         setContentView(R.layout.input_page);
 
@@ -71,6 +70,7 @@ public class GameOverPage extends AppCompatActivity {
 
             Intent nextPage = new Intent(GameOverPage.this, LeadershipBoardPage.class);
             nextPage.putExtra("username", editText.getText().toString());
+            nextPage.putExtra("point", point);
             /*Used to say the player's username that was typed in the EditText.*/
             SharedPreferences.Editor editor = prefs.edit();
             /*Saving the string to the file username that was opened using the command*/
@@ -78,11 +78,11 @@ public class GameOverPage extends AppCompatActivity {
             /*apply() is used to write the data in the background so the GUI doesn't slow down.*/
             editor.apply();
 
-            PlayerInformation player_info = new PlayerInformation(username, String.valueOf(point));
-            Executor thread = Executors.newSingleThreadExecutor();
-            thread.execute(()->{
-                pDAO.insertInformation(player_info);
-            });
+//            PlayerInformation player_info = new PlayerInformation(username, String.valueOf(point));
+//            Executor thread = Executors.newSingleThreadExecutor();
+//            thread.execute(()->{
+//                pDAO.insertInformation(player_info);
+//            });
             startActivity(nextPage);
         });
     }

@@ -6,11 +6,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/place"
+        android:id="@+id/rank"
         android:layout_width="30dp"
         android:layout_height="45dp"
-        android:layout_marginStart="50dp"
-        android:text="Rank Goes Here."
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:text="Rank"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="101dp" />
 
@@ -18,18 +19,20 @@
         android:id="@+id/score"
         android:layout_width="187dp"
         android:layout_height="45dp"
+        android:layout_marginStart="20dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
         android:text="Player 1"
         android:textSize="20dp"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="101dp" />
+        app:layout_constraintStart_toEndOf="@+id/rank"
+        app:layout_constraintTop_toTopOf="@+id/rank" />
 
     <TextView
         android:id="@+id/highscore"
         android:layout_width="100dp"
         android:layout_height="45dp"
         android:text="Total Points_1"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toEndOf="@+id/score"
