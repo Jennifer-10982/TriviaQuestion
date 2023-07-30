@@ -13,5 +13,6 @@
         <item>Politics</item>
         <item>Art</item>
     </string-array>
+    <string name="student">STUDENT</string>
 
 </resources>

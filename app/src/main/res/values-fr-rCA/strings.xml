@@ -7,4 +7,5 @@
     <string name="author">Par: Jennifer Huynh</string>
     <string name="submit">SOUMETTRE</string>
     <string name="game_over">Jeu Terminé</string>
+    <string name="student">ÉTUDIANT</string>
 </resources>

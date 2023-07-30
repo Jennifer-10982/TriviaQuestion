@@ -2,11 +2,15 @@ package algonquin.cst2335.triviaquestion;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,6 +19,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
@@ -33,7 +39,57 @@ public class LeadershipBoardPage extends AppCompatActivity {
     int position;
 
     ProjectViewModel model;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        TextView score;
+        if(item.getItemId() == R.id.item_1){
+            AlertDialog.Builder builder = new AlertDialog.Builder(LeadershipBoardPage.this);
+            builder.setMessage("1. Pick a Category\n" +
+                            "2. Select the Right Answer and Click Submit.\n" +
+                            "\t Correct: +20 points. Yay!\n" +
+                            "\t Incorrect: -30 points. Booo!\n\n" +
+                            "3. Keep Playing Until You Can Get a Total of 5 Correct Answer!\n\n" +
+                            "GOOD LUCK!")
+                    .setTitle("How to Play: ")
+                    .setPositiveButton("Got It!", ((dialog, clk) -> {
+                        dialog.cancel();
+                    }));
+
+            builder.create().show();
+        }else{
+            model.selectedPlayer.postValue(ranking.get(position));
+            score = findViewById(R.id.score);
+            AlertDialog.Builder builder = new AlertDialog.Builder(LeadershipBoardPage.this);
+            builder.setMessage("Are You Sure You Want to Delete This Champion: " + ranking.get(position).playerName)
+                    .setTitle("WARNING: ")
+                    .setNegativeButton("Go Back", ((dialog, which) -> {}))
+                    .setPositiveButton("Confirm", ((dialog, which) -> {
+                        PlayerInformation removePlayer = ranking.get(position);
+                        ranking.remove(position);
+                        myAdapter.notifyItemRemoved(position);
+
+                        Executor thread = Executors.newSingleThreadExecutor();
+                        thread.execute(()->{
+                            pDAO.deleteInformation(removePlayer);
+                            runOnUiThread(()->variableBinding.recyclerView.setAdapter(myAdapter));
+                        });
+                        Snackbar.make(score, removePlayer.playerName+"Has Been Eliminated", Snackbar.LENGTH_LONG)
+                                .setAction("Undo", clk ->{
+                                   ranking.add(position, removePlayer);
+                                   myAdapter.notifyItemInserted(position);
+                                }).show();
+                    }));
+            builder.create().show();
+        }
+        return true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +106,7 @@ public class LeadershipBoardPage extends AppCompatActivity {
         model = new ViewModelProvider(this).get(ProjectViewModel.class);
         variableBinding = LeadershipDetailsLayoutBinding.inflate(getLayoutInflater());
         setContentView(variableBinding.getRoot());
+        setSupportActionBar(variableBinding.myToolbar);
 
         model.selectedPlayer.observe(this, newPlayer->{
             if(newPlayer != null){
