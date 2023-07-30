@@ -57,6 +57,7 @@ public class LeadershipBoardPage extends AppCompatActivity {
         Executor thread = Executors.newSingleThreadExecutor();
             thread.execute(()->{
                 pDAO.insertInformation(player_info);
+                ranking.addAll(pDAO.getAllPlayerInfo());
                 runOnUiThread(()->{
                     variableBinding.recyclerView.setAdapter(myAdapter);
                     myAdapter.notifyItemInserted(ranking.size()-1);

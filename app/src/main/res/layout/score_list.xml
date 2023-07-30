@@ -9,7 +9,7 @@
         android:id="@+id/rank"
         android:layout_width="30dp"
         android:layout_height="45dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="35dp"
         android:gravity="center"
         android:text="Rank"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,10 +31,10 @@
         android:id="@+id/highscore"
         android:layout_width="100dp"
         android:layout_height="45dp"
-        android:text="Total Points_1"
+        android:layout_marginEnd="35dp"
         android:gravity="center"
+        android:text="Total Points_1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toEndOf="@+id/score"
         app:layout_constraintTop_toTopOf="@+id/score" />
 
