@@ -58,13 +58,6 @@ public class GameOverPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*Use for opening the database*/
-//        InformationDatabase db = Room.databaseBuilder(getApplicationContext(),
-//                InformationDatabase.class,"database-name").build();
-//        pDAO= db.cmDAO();
-
-//        setContentView(R.layout.input_page);
-
         Intent fromPrevious = getIntent();
         int point = fromPrevious.getIntExtra("counter", counter);
 
@@ -101,11 +94,6 @@ public class GameOverPage extends AppCompatActivity {
             /*apply() is used to write the data in the background so the GUI doesn't slow down.*/
             editor.apply();
 
-//            PlayerInformation player_info = new PlayerInformation(username, String.valueOf(point));
-//            Executor thread = Executors.newSingleThreadExecutor();
-//            thread.execute(()->{
-//                pDAO.insertInformation(player_info);
-//            });
             startActivity(nextPage);
         });
     }
