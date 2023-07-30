@@ -8,14 +8,11 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import java.util.Arrays;
-import java.util.List;
-
 import algonquin.cst2335.triviaquestion.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private QuestionPageViewModel model;
+    private ProjectViewModel model;
 
     private ActivityMainBinding binding;
 
@@ -36,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(myAdapter);
 
-        model = new ViewModelProvider(this).get(QuestionPageViewModel.class);
+        model = new ViewModelProvider(this).get(ProjectViewModel.class);
 
 
         binding.playBtn.setOnClickListener(clk ->{

@@ -1,22 +1,17 @@
 package algonquin.cst2335.triviaquestion;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -26,22 +21,17 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
-import algonquin.cst2335.triviaquestion.databinding.ActivityMainBinding;
-import algonquin.cst2335.triviaquestion.databinding.ActivityQuestionnairePageBinding;
 import algonquin.cst2335.triviaquestion.databinding.ListItemBinding;
 
 public class Questionnaire_Page extends AppCompatActivity implements View.OnClickListener {
     int counter = 0;
     String answer = null;
 
-    private QuestionPageViewModel model;
+    private ProjectViewModel model;
     private ListItemBinding variableBinding;
     protected RequestQueue queue = null;
     int number;
@@ -87,7 +77,7 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
         option3.setOnClickListener(this);
         option4.setOnClickListener(this);
 
-        model = new ViewModelProvider(this).get(QuestionPageViewModel.class);
+        model = new ViewModelProvider(this).get(ProjectViewModel.class);
         variableBinding.points.setText(String.valueOf(model.display_points));
 
         /*Checks whether the answer is correct. If it is, then the points increase. If not, then points decrease.

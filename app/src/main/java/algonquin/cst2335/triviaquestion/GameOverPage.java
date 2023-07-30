@@ -4,27 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-
-import java.util.ArrayList;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import algonquin.cst2335.triviaquestion.databinding.InputPageBinding;
-import algonquin.cst2335.triviaquestion.databinding.LeadershipDetailsLayoutBinding;
 
 public class GameOverPage extends AppCompatActivity {
-    private QuestionPageViewModel model;
+    private ProjectViewModel model;
     private InputPageBinding variableBinding;
 
     private int counter;
@@ -50,7 +38,7 @@ public class GameOverPage extends AppCompatActivity {
         variableBinding = InputPageBinding.inflate(getLayoutInflater());
         setContentView(variableBinding.getRoot());
 
-        model = new ViewModelProvider(this).get(QuestionPageViewModel.class);
+        model = new ViewModelProvider(this).get(ProjectViewModel.class);
         variableBinding.displayPoints.setText(String.valueOf(point));
 
         /*Creating a SharedPreference object where user input will be pre-filled.

@@ -6,11 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-public class QuestionPageViewModel extends ViewModel {
+public class ProjectViewModel extends ViewModel {
     public int display_points;
     public MutableLiveData<ArrayList<PlayerInformation>> ranking = new MutableLiveData<>();
 
-    public LiveData<ArrayList<PlayerInformation>> getRanking(){
-        return ranking;
-    }
+    public MutableLiveData<PlayerInformation> selectedPlayer = new MutableLiveData<>(null);
 }

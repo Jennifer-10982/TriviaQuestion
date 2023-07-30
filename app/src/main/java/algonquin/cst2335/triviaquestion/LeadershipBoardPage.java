@@ -8,14 +8,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -29,7 +30,9 @@ public class LeadershipBoardPage extends AppCompatActivity {
     private RecyclerView.Adapter myAdapter;
     private int point;
     private String username;
+    int position;
 
+    ProjectViewModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +47,22 @@ public class LeadershipBoardPage extends AppCompatActivity {
         Intent fromPrevious = getIntent();
         int counter = fromPrevious.getIntExtra("point", point);
         String user_name = fromPrevious.getStringExtra("username");
-
+        model = new ViewModelProvider(this).get(ProjectViewModel.class);
         variableBinding = LeadershipDetailsLayoutBinding.inflate(getLayoutInflater());
         setContentView(variableBinding.getRoot());
+
+        model.selectedPlayer.observe(this, newPlayer->{
+            if(newPlayer != null){
+                PlayerDetailsFragment detailsFragment = new PlayerDetailsFragment(newPlayer);
+
+                FragmentManager fMgr = getSupportFragmentManager();
+                FragmentTransaction tx = fMgr.beginTransaction();
+                tx.addToBackStack("");
+                tx.replace(R.id.fragmentLocation, detailsFragment);
+                tx.commit();
+            }
+
+        });
 
         /*Creating an object called player_info to contain the username and their points*/
         PlayerInformation player_info = new PlayerInformation(user_name, String.valueOf(counter));
@@ -110,6 +126,12 @@ public class LeadershipBoardPage extends AppCompatActivity {
         TextView highscore;
         public MyRowHolder(@NonNull View itemView){
             super(itemView);
+
+            itemView.setOnClickListener(clk ->{
+                position = getAbsoluteAdapterPosition();
+                model.selectedPlayer.postValue(ranking.get(position));
+            });
+
             rank = itemView.findViewById(R.id.rank);
             score = itemView.findViewById(R.id.score);
             highscore = itemView.findViewById(R.id.highscore);
