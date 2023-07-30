@@ -26,7 +26,11 @@ import androidx.room.PrimaryKey;
             counter = c;
         }
 
-        /*This is a getter method use to return the values of the variable playerName*/
+        public void setId(int id){
+            this.id = id;
+        }
+
+    /*This is a getter method use to return the values of the variable playerName*/
         public String getPlayerName(){
             return playerName;
         }
@@ -34,6 +38,10 @@ import androidx.room.PrimaryKey;
         /*This is a getter method use to return the values of the variable counter*/
         public String getCounter(){
             return counter;
+        }
+
+        public int getId(){
+            return id;
         }
 
 }

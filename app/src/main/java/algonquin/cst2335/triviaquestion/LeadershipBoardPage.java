@@ -30,7 +30,6 @@ public class LeadershipBoardPage extends AppCompatActivity {
     private int point;
     private String username;
 
-    QuestionPageViewModel playerModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,31 +50,18 @@ public class LeadershipBoardPage extends AppCompatActivity {
 
         /*Creating an object called player_info to contain the username and their points*/
         PlayerInformation player_info = new PlayerInformation(user_name, String.valueOf(counter));
-        /*Adding the object player_info into the ArrayList*/
-        ranking.add(player_info);
 
         Executor thread = Executors.newSingleThreadExecutor();
             thread.execute(()->{
+                /*inserting into the database*/
                 pDAO.insertInformation(player_info);
                 ranking.addAll(pDAO.getAllPlayerInfo());
                 runOnUiThread(()->{
                     variableBinding.recyclerView.setAdapter(myAdapter);
                     myAdapter.notifyItemInserted(ranking.size()-1);
                         }
-
                 );
-                /*Notifies the adapter that a new item has been inserted into the dataset and should
-                 * update the recyclerView*/
-//                myAdapter.notifyItemInserted(ranking.size()-1);
-                /*Is called whenever the entire ArrayList has changed (like loading from the database)*/
-//                myAdapter.notifyDataSetChanged();
             });
-
-//        /*Notifies the adapter that a new item has been inserted into the dataset and should
-//         * update the recyclerView*/
-//        myAdapter.notifyItemInserted(ranking.size()-1);
-//        /*Is called whenever the entire ArrayList has changed (like loading from the database)*/
-//        myAdapter.notifyDataSetChanged();
 
 //        /*Use to specify a single column scrolling in a vertical direction*/
         variableBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -101,9 +87,9 @@ public class LeadershipBoardPage extends AppCompatActivity {
             @Override
             public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
                 PlayerInformation player_info = ranking.get(position);
-
-                holder.score.setText(player_info.playerName);
-                holder.highscore.setText(player_info.counter);
+                    holder.rank.setText(String.valueOf(position + 1));
+                    holder.score.setText(player_info.playerName);
+                    holder.highscore.setText(player_info.counter);
             }
 
             /*Function returns an int specifying how many items to draw.
