@@ -12,17 +12,19 @@
         android:layout_marginStart="35dp"
         android:gravity="center"
         android:text="Rank"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="101dp" />
 
     <TextView
         android:id="@+id/score"
-        android:layout_width="187dp"
+        android:layout_width="168dp"
         android:layout_height="45dp"
         android:layout_marginStart="20dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
         android:text="Player 1"
+        android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/rank"
         app:layout_constraintTop_toTopOf="@+id/rank" />
@@ -31,9 +33,10 @@
         android:id="@+id/highscore"
         android:layout_width="100dp"
         android:layout_height="45dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginEnd="60dp"
         android:gravity="center"
         android:text="Total Points_1"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/score"
         app:layout_constraintTop_toTopOf="@+id/score" />

@@ -51,14 +51,9 @@ public class LeadershipBoardPage extends AppCompatActivity {
         TextView score;
         if(item.getItemId() == R.id.item_1){
             AlertDialog.Builder builder = new AlertDialog.Builder(LeadershipBoardPage.this);
-            builder.setMessage("1. Pick a Category\n" +
-                            "2. Select the Right Answer and Click Submit.\n" +
-                            "\t Correct: +20 points. Yay!\n" +
-                            "\t Incorrect: -30 points. Booo!\n\n" +
-                            "3. Keep Playing Until You Can Get a Total of 5 Correct Answer!\n\n" +
-                            "GOOD LUCK!")
-                    .setTitle("How to Play: ")
-                    .setPositiveButton("Got It!", ((dialog, clk) -> {
+            builder.setMessage(getString(R.string.message))
+                    .setTitle(getString(R.string.title2))
+                    .setPositiveButton(getString((R.string.gotit)), ((dialog, clk) -> {
                         dialog.cancel();
                     }));
 
@@ -67,10 +62,10 @@ public class LeadershipBoardPage extends AppCompatActivity {
             model.selectedPlayer.postValue(ranking.get(position));
             score = findViewById(R.id.score);
             AlertDialog.Builder builder = new AlertDialog.Builder(LeadershipBoardPage.this);
-            builder.setMessage("Are You Sure You Want to Delete This Champion: " + ranking.get(position).playerName)
-                    .setTitle("WARNING: ")
-                    .setNegativeButton("Go Back", ((dialog, which) -> {}))
-                    .setPositiveButton("Confirm", ((dialog, which) -> {
+            builder.setMessage(getString(R.string.deletemsg) + ranking.get(position).playerName)
+                    .setTitle(getString(R.string.deltitle))
+                    .setNegativeButton(getString(R.string.negBtn), ((dialog, which) -> {}))
+                    .setPositiveButton(getString(R.string.posBtn), ((dialog, which) -> {
                         PlayerInformation removePlayer = ranking.get(position);
                         ranking.remove(position);
                         myAdapter.notifyItemRemoved(position);
@@ -80,8 +75,8 @@ public class LeadershipBoardPage extends AppCompatActivity {
                             pDAO.deleteInformation(removePlayer);
                             runOnUiThread(()->variableBinding.recyclerView.setAdapter(myAdapter));
                         });
-                        Snackbar.make(score, removePlayer.playerName+"Has Been Eliminated", Snackbar.LENGTH_LONG)
-                                .setAction("Undo", clk ->{
+                        Snackbar.make(score, removePlayer.playerName+getString(R.string.confirmdeletion), Snackbar.LENGTH_LONG)
+                                .setAction(getString(R.string.undo), clk ->{
                                    ranking.add(position, removePlayer);
                                    myAdapter.notifyItemInserted(position);
                                 }).show();

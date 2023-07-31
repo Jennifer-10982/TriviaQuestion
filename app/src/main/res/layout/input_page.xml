@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/failure3"
+    >
 
     <TextView
         android:id="@+id/gameOver"
@@ -23,13 +25,14 @@
         android:id="@+id/display_points"
         android:layout_width="234dp"
         android:layout_height="56dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="Points"
         android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameOver" />
 
@@ -37,7 +40,7 @@
         android:id="@+id/editText"
         android:layout_width="234dp"
         android:layout_height="56dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="casual"
         android:gravity="center"
         android:hint="Insert Player Name"
@@ -45,6 +48,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/display_points" />
 
@@ -62,7 +66,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.92" />
+        app:layout_constraintVertical_bias="0.954" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/myToolbar"

@@ -8,4 +8,17 @@
     <string name="submit">SOUMETTRE</string>
     <string name="game_over">Jeu Terminé</string>
     <string name="student">ÉTUDIANT</string>
+    <string name="message">1. Choisissez une catégorie\n\n2. Sélectionnez la bonne réponse et cliquez sur Soumettre.\n\t Correct : +20 points. Youpi !\n\t Incorrect : -30 points. Booo !\n\n
+                           3. Continuez à jouer jusqu\'à ce que vous puissiez obtenir un total de 5 bonnes réponses !\n\n" +
+                           "BONNE CHANCE!</string>
+    <string name="title2">Comment Jouer</string>
+    <string name="gotit">J\'ai compris!</string>
+    <string name="deletemsg">Êtes-vous sûr de vouloir supprimer ce champion:</string>
+    <string name="deltitle">AVERTISSEMENT</string>
+    <string name="posBtn">" Confirmer"</string>
+    <string name="negBtn">Retourner</string>
+    <string name="undo">Annuler</string>
+    <string name="confirmdeletion">a été éliminé</string>
+    <string name="denyAction">Impossible d\'effectuer l\'action</string>
+
 </resources>

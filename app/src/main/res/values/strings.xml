@@ -6,6 +6,17 @@
     <string name="author">Made By: Jennifer Huynh</string>
     <string name="submit">SUBMIT</string>
     <string name="game_over">Game Over</string>
+    <string name="message">1. Pick a Category\n\n2. Select the Right Answer and Click Submit.\n\t Correct: +30 points. Yay!\n\t Incorrect: -10 points. Booo!\n\n
+                           3. Keep Playing Until You Can Get a Total of 5 Correct Answer!\n\n
+                           GOOD LUCK!</string>
+    <string name="deletemsg">Are You Sure You Want to Delete This Champion:</string>
+    <string name="title2">How To Play</string>
+    <string name="deltitle">WARNING</string>
+    <string name="posBtn">Confirm</string>
+    <string name="negBtn">Go Back</string>
+    <string name="undo">Undo</string>
+    <string name="confirmdeletion">Has Been Eliminated</string>
+    <string name="denyAction">"Cannot Perform Action"</string>
     <string-array name="categories">
         <item>Geography</item>
         <item>Mythology</item>
@@ -14,5 +25,7 @@
         <item>Art</item>
     </string-array>
     <string name="student">STUDENT</string>
+    <string name="gotit">Got It!</string>
+
 
 </resources>

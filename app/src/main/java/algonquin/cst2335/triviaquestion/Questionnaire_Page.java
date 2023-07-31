@@ -56,20 +56,15 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.item_1){
             AlertDialog.Builder builder = new AlertDialog.Builder(Questionnaire_Page.this);
-            builder.setMessage("1. Pick a Category\n" +
-                               "2. Select the Right Answer and Click Submit.\n" +
-                               "\t Correct: +20 points. Yay!\n" +
-                               "\t Incorrect: -30 points. Booo!\n\n" +
-                               "3. Keep Playing Until You Can Get a Total of 5 Correct Answer!\n\n" +
-                               "GOOD LUCK!")
-            .setTitle("How to Play: ")
-                    .setPositiveButton("Got It!", ((dialog, clk) -> {
+            builder.setMessage(getString(R.string.message))
+                    .setTitle(getString(R.string.title2))
+                    .setPositiveButton(getString((R.string.gotit)), ((dialog, clk) -> {
                         dialog.cancel();
                     }));
 
             builder.create().show();
         }else
-            Toast.makeText(Questionnaire_Page.this, "Cannot Perform Deletion", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Questionnaire_Page.this, getString(R.string.denyAction), Toast.LENGTH_SHORT).show();
         return true;
     }
 
@@ -126,13 +121,14 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
         /*Retrieves the selection from the Main Activity*/
         String choice = fromPrevious.getStringExtra("choice");
 
-        if (choice.equalsIgnoreCase("Geography")){
+        String[] categories = getResources().getStringArray(R.array.categories);
+        if (choice.equalsIgnoreCase(categories[0])){
             return number = 22;
-        } else if (choice.equalsIgnoreCase("Mythology")){
+        } else if (choice.equalsIgnoreCase(categories[1])){
             return number = 20;
-        } else if (choice.equalsIgnoreCase("History")){
+        } else if (choice.equalsIgnoreCase(categories[2])){
             return number = 23;
-        }else if (choice.equalsIgnoreCase("Politics")){
+        }else if (choice.equalsIgnoreCase(categories[3])){
             return number = 24;
         }else
             return number = 25;
