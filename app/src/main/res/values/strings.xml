@@ -26,6 +26,8 @@
     </string-array>
     <string name="student">STUDENT</string>
     <string name="gotit">Got It!</string>
+    <string name="top10">Top 10 Players</string>
+    <string name="delete">Delete</string>
 
 
 </resources>

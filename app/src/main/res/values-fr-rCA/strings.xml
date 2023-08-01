@@ -2,14 +2,14 @@
 <resources>
     <string name="app_name">Trivia</string>
     <string name="category_name">" Catégories"</string>
-    <string name="welcome">Bienvenue</string>
+    <string name="welcome">Bienvenu</string>
     <string name="play_message">Jouer!</string>
     <string name="author">Par: Jennifer Huynh</string>
     <string name="submit">SOUMETTRE</string>
     <string name="game_over">Jeu Terminé</string>
     <string name="student">ÉTUDIANT</string>
     <string name="message">1. Choisissez une catégorie\n\n2. Sélectionnez la bonne réponse et cliquez sur Soumettre.\n\t Correct : +20 points. Youpi !\n\t Incorrect : -30 points. Booo !\n\n
-                           3. Continuez à jouer jusqu\'à ce que vous puissiez obtenir un total de 5 bonnes réponses !\n\n" +
+                           3. Continuez à jouer jusqu\'à ce que vous puissiez obtenir un total de 5 bonnes réponses !\n\n"
                            "BONNE CHANCE!</string>
     <string name="title2">Comment Jouer</string>
     <string name="gotit">J\'ai compris!</string>
@@ -18,7 +18,10 @@
     <string name="posBtn">" Confirmer"</string>
     <string name="negBtn">Retourner</string>
     <string name="undo">Annuler</string>
-    <string name="confirmdeletion">a été éliminé</string>
+    <string name="confirmdeletion"> a été éliminé</string>
     <string name="denyAction">Impossible d\'effectuer l\'action</string>
+    <string name="top10">Les 10 Meilleurs Joueurs</string>
+    <string name="delete">Supprimer</string>
+
 
 </resources>

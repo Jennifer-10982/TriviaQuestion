@@ -1,3 +1,12 @@
+/*
+ * Student Name: Jennifer Huynh
+ * Student Number: 041086110
+ * Lab Section: CST2335_022
+ * Due Date: 07/08/23
+ * Description: The class GameOverPage is used to retrieve the user's username. The input will persist on the page regardless
+ * if the class changes or the app exited. The points and the username will be displayed and their
+ * value will be passed onto the next activity.
+ * */
 package algonquin.cst2335.triviaquestion;
 
 import android.content.Context;
@@ -16,7 +25,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import algonquin.cst2335.triviaquestion.databinding.InputPageBinding;
 
+/**
+ * The class GameOverPage is used to retrieve the user's username. The input will persist on the page regardless
+ * if the class changes or the app exited. The points and the username will be displayed and their
+ * value will be passed onto the next activity.
+ */
 public class GameOverPage extends AppCompatActivity {
+    /**
+     * model is used to prepare and managed data for Questionnaire_Page and handles communication between the class. It is the business logic
+     * variableBinding is the binding class that represents the layout xml used and allow access for said xml variable
+     * counter is the counter value from the Activity Questionnaire_Page. It represents the total points.
+     * player is a string that represents username from the user's input.
+     */
     private ProjectViewModel model;
     private InputPageBinding variableBinding;
 
@@ -47,8 +67,6 @@ public class GameOverPage extends AppCompatActivity {
         return true;
     }
 
-
-    //    PlayerInformationDAO pDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

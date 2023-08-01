@@ -1,3 +1,11 @@
+/*
+* Student Name: Jennifer Huynh
+* Student Number: 041086110
+* Lab Section: CST2335_022
+* Due Date: 07/08/23
+* Description: The LeadershipBoardPage class is a subclass that will retrieve the dataset from the database and to display the top 10 player, their
+ * ranks ranging from 1 to 10, and their highscores and place the value into RecycleView.
+* */
 package algonquin.cst2335.triviaquestion;
 
 import android.content.Intent;
@@ -29,7 +37,21 @@ import java.util.concurrent.Executors;
 import algonquin.cst2335.triviaquestion.databinding.LeadershipDetailsLayoutBinding;
 import algonquin.cst2335.triviaquestion.databinding.ScoreListBinding;
 
+/**
+ * The LeadershipBoardPage class is a subclass that will retrieve the dataset from the database and to display the top 10 player, their
+ * ranks ranging from 1 to 10, and their highscores and place the value into RecycleView.
+ */
 public class LeadershipBoardPage extends AppCompatActivity {
+    /**
+     * model is used to prepare and managed data for Questionnaire_Page and handles communication between the class. It is the business logic
+     * variableBinding is the binding class that represents the layout xml used and allow access for said xml variable
+     * ranking is an ArrayList used to contain all the information regarding the player from the database.
+     * pDAO represents the data access object use. pDAO is use to interact with the database to retrieve and/or manipulate the data in the database.
+     * myAdapter is used retrieve and associate the data into the recycleView.
+     * point is the total points the player have achieved throughout the game. The points contains only whole numbers.
+     * username is a string variable that contains the name that the player have inserted after they have completed the game. It can only contain alphanumerics
+     * position is the position (the index) from the array list
+     */
     private LeadershipDetailsLayoutBinding variableBinding;
     PlayerInformationDAO pDAO;
     ArrayList<PlayerInformation> ranking;
@@ -75,7 +97,7 @@ public class LeadershipBoardPage extends AppCompatActivity {
                             pDAO.deleteInformation(removePlayer);
                             runOnUiThread(()->variableBinding.recyclerView.setAdapter(myAdapter));
                         });
-                        Snackbar.make(score, removePlayer.playerName+getString(R.string.confirmdeletion), Snackbar.LENGTH_LONG)
+                        Snackbar.make(score, removePlayer.playerName+ getString(R.string.confirmdeletion), Snackbar.LENGTH_LONG)
                                 .setAction(getString(R.string.undo), clk ->{
                                    ranking.add(position, removePlayer);
                                    myAdapter.notifyItemInserted(position);
@@ -131,7 +153,7 @@ public class LeadershipBoardPage extends AppCompatActivity {
                 );
             });
 
-//        /*Use to specify a single column scrolling in a vertical direction*/
+       /*Use to specify a single column scrolling in a vertical direction*/
         variableBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         /*Initializing the variable myAdapter*/
@@ -171,11 +193,25 @@ public class LeadershipBoardPage extends AppCompatActivity {
         });
     }
 
-    /*Class represents an object for representing everything that goes on a row in a list*/
+    /**
+     * Class represents an object for representing everything that goes on a row in a list.
+     * It will hold the reference to the TextView from the xml layer while displaying the rank, score, and highscore
+     */
     class MyRowHolder extends RecyclerView.ViewHolder{
+        /**
+         * rank is the rank of the player starting from 1 and ending at 10. The rank is decided by the highscore.
+         * score is the name of the player that was written after the user finished playing the game
+         * highschore is the total score the user have received after finishing the game. It can only contain whole numbers
+         */
         TextView rank;
         TextView score;
         TextView highscore;
+
+        /**
+         * The Constructor for the MyRowHolder Class where the viewholder where it is used to listen for a user to click on one of
+         * the item on the list to display its specific information regarding the individual.
+         * @param itemView is the view that represents a single item.
+         */
         public MyRowHolder(@NonNull View itemView){
             super(itemView);
 
@@ -183,7 +219,7 @@ public class LeadershipBoardPage extends AppCompatActivity {
                 position = getAbsoluteAdapterPosition();
                 model.selectedPlayer.postValue(ranking.get(position));
             });
-
+            /*Initialization of the textView fields*/
             rank = itemView.findViewById(R.id.rank);
             score = itemView.findViewById(R.id.score);
             highscore = itemView.findViewById(R.id.highscore);
