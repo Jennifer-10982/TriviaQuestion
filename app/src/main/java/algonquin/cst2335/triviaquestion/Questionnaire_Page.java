@@ -185,7 +185,7 @@ public class Questionnaire_Page extends AppCompatActivity implements View.OnClic
      * another page will load.
      */
     public void checker(){
-       if(i>=0){
+       if(i>=5){
            variableBinding.submit.setOnClickListener(clk ->{
                Intent nextPage = new Intent(Questionnaire_Page.this, GameOverPage.class);
                nextPage.putExtra("counter", counter);
